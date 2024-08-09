@@ -16,24 +16,27 @@
  * limitations under the License.
  */
 
-package org.apache.flink.table.planner.plan.nodes.exec.stream;
+package org.apache.flink.table.planner.plan.nodes.exec.batch;
 
-import org.apache.flink.table.planner.plan.nodes.exec.common.LimitTestPrograms;
-import org.apache.flink.table.planner.plan.nodes.exec.testutils.RestoreTestBase;
+import org.apache.flink.table.planner.plan.nodes.exec.common.UnionTestPrograms;
+import org.apache.flink.table.planner.plan.nodes.exec.testutils.BatchRestoreTestBase;
 import org.apache.flink.table.test.program.TableTestProgram;
 
 import java.util.Arrays;
 import java.util.List;
 
-/** Restore tests for {@link StreamExecLimit}. */
-public class LimitRestoreTest extends RestoreTestBase {
+/** Batch Compiled Plan tests for {@link BatchExecUnion}. */
+public class UnionBatchRestoreTest extends BatchRestoreTestBase {
 
-    public LimitRestoreTest() {
-        super(StreamExecLimit.class);
+    public UnionBatchRestoreTest() {
+        super(BatchExecUnion.class);
     }
 
     @Override
     public List<TableTestProgram> programs() {
-        return Arrays.asList(LimitTestPrograms.LIMIT);
+        return Arrays.asList(
+                UnionTestPrograms.UNION_TWO_SOURCES,
+                UnionTestPrograms.UNION_ALL_TWO_SOURCES,
+                UnionTestPrograms.UNION_ALL_WITH_FILTER);
     }
 }
